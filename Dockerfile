@@ -11,7 +11,7 @@ COPY . /build
 
 WORKDIR /build
 
-RUN go build -ldflags "-s -w -X github.com/dwn-infinity/bitmagnet/internal/version.GitTag=$(git describe --tags --always --dirty)"
+RUN go build -ldflags "-s -w -X github.com/dwninfinity/bitmagnet/internal/version.GitTag=$(git describe --tags --always --dirty)"
 
 FROM alpine:3.18
 
