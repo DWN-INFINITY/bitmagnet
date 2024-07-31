@@ -52,6 +52,10 @@ workflows:
                 if_action:
                   set_content_type: xxx
                 else_action: unmatched
+        if_action:
+          find_match:    
+            #custom
+            
     # if the name contains a full date, attach it to the result as it's a good indicator of content type:
     - find_match:
         - parse_date
@@ -100,6 +104,26 @@ workflows:
             - "result.contentType in flags.delete_content_types"
             - "flags.delete_xxx && result.contentType == contentType.xxx"
         if_action: delete
+    - if_else:
+        condition: "([torrent.baseName] + torrent.files.map(f, f.basePath)).join(' ').matches(keywords.dlsite)"
+        if_action:
+          add_tag: dlsite
+    - if_else:
+        condition: "([torrent.baseName] + torrent.files.map(f, f.basePath)).join(' ').matches(keywords.japanoldies)"
+        if_action:
+          add_tag: japanoldies
+    - if_else:
+        condition: "([torrent.baseName] + torrent.files.map(f, f.basePath)).join(' ').matches(keywords.chinaphotos)"
+        if_action:
+          add_tag: chinaphotos
+    - if_else:
+        condition: "([torrent.baseName] + torrent.files.map(f, f.basePath)).join(' ').matches(keywords.imoutotv)"
+        if_action:
+          add_tag: imoutotv
+    - if_else:
+        condition: "([torrent.baseName] + torrent.files.map(f, f.basePath)).join(' ').matches("IM[A-Z]{2}")"
+        if_action:
+          add_tag: imoutotv
 extensions:
   audiobook:
     - m4b
@@ -205,6 +229,115 @@ keywords:
     - threesome
     - "*wank*"
     - "*xxx*"
+  dlsite:
+    - RJ#+
+    - VJ#+
+    - GJ#+
+    - YJ#+
+    - BJ#+
+  chinaphotos:
+    - QQ视频
+    - PR社
+    - QQ图片
+  japanoldies:
+    - 英知出版 #folder1
+    - 佐藤只一
+    - 前場輝夫
+    - 小沢忠恭
+    - 山岸伸
+    - 岡克己
+    - 平田友二
+    - 彩紋洋実
+    - 横内史
+    - 池田亨昭
+    - 篠崎紀雄
+    - 若杉憲司
+    - 藤田健五
+    - 西田幸樹
+    - 黑松隆
+    - 西村理香
+    - ばくはつ五郎
+    - 若杉ケンジ
+    - 井上一真
+    - 斉木弘吉
+    - Beppin特别編集
+    - Beppin
+    - 学級日誌
+    - 学級日記
+    - KANORI
+    - KANABUN
+    - 美少女紀行 #folder2
+    - テイアイエス
+    - ビブロス
+    - ぶんか社
+    - 竹書房
+    - 高橋生建
+    - 鹿砦社
+    - 高橋生建
+    - 中川秀樹
+    - Euro Beauty
+    - Euro Fairies
+    - 白夜書房 #folder3
+    - 古川晴彦
+    - 尾坂光義
+    - 杉本健一
+    - 杉田和秀
+    - 独多宇一
+    - 石川洋司
+    - 岡部信三
+    - 近藤昌良
+    - 荒木経惟
+    - 近藤昌良
+    - 近藤昌良
+    - 高桑常寿
+    - 高橋生建
+    - 清岡純子 #folder4
+    - ダイナミックセラーズ
+    - フジアート出版
+    - 清岡純子
+    - 聖少女
+    - 大塚カラー現像所出版部
+    - 辰巳出版
+    - 炉雑誌 #folder5
+    - 杂志
+    - 雑誌
+    - さーくる社
+    - スーパー写真塾
+    - にんふらばあ
+    - プチミルク
+    - ぶんか社
+    - ペペ
+    - ロイヤル出版
+    - 三和出版
+    - 少女写真百科 ないしよばなし
+    - 少女写真百科
+    - 少女物語
+    - 白夜書房
+    - 秘密の花園
+    - 素顏美少女学園
+    - Sukusui
+    - パンスト Freak
+    - 小学館文庫
+    - 少年出版社
+    - Goro特別編集
+    - 渡辺達生
+    - Tバックセンセーション
+    - Tフロント女子高生
+    - 女子高生Tバックパイパン
+    - ロリータスナイパー
+    - ヘイ!バディー
+    - アリスクラブ
+    - Alice Club
+    - ロリくらぶデラックス
+    - ロリくらぶ
+    - ぽにいて～る
+    - クロード・アイ社 #folder6
+    - シティ出版
+    - ダイナミックセラーズ
+    - lanyidong
+  imoutotv:
+    - icao
+    
 flag_definitions:
   local_search_enabled: bool
   apis_enabled: bool
